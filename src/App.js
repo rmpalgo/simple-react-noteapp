@@ -1,12 +1,25 @@
-import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import React, { Component } from 'react';
 import './App.css';
+import Note from './Note/Note';
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component {
 
-    </div>
-  );
+
+  render() {
+    return (
+        <div className="App">
+            <div className="container">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <a className="navbar-brand" href="#">NotePad</a>
+                </nav>
+            </div>
+            <div>
+                <Note />
+            </div>
+        </div>
+    );
+  }
 }
 
 export default App;
