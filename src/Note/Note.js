@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 
@@ -18,15 +18,22 @@ const NoteDiv = styled.div`
                 }
 `
 
-const note = () => {
+const Note = () => {
+    const [noteState, setNoteState] = useState({
+        notes: [{text: 'Hello!'}]
+    });
+
+    const switchNote = () => {
+        setNoteState({ notes: [{text: 'Changed!'}]});
+    }
 
     return(
         <NoteDiv>
-            <div>Note Text</div>
-            <button className={"btn btn-warning"}>Edit</button>
+            <div>{noteState.notes[0].text}</div>
+            <button className={"btn btn-warning mr-3"}>Edit</button>
             <button className={"btn btn-danger"}>Delete</button>
         </NoteDiv>
     )
 }
 
-export default note;
+export default Note;

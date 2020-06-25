@@ -10,7 +10,7 @@ class App extends Component {
     return (
         <div className="App">
             <div className="container">
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-light bg-info">
                     <a className="navbar-brand" href="#">NotePad</a>
                 </nav>
             </div>
