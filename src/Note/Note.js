@@ -20,19 +20,43 @@ const NoteDiv = styled.div`
 
 const Note = () => {
     const [noteState, setNoteState] = useState({
-        notes: [{text: 'Hello!'}]
+        showForm: false
     });
 
     const switchNote = () => {
-        setNoteState({ notes: [{text: 'Changed!'}]});
+        setNoteState({showForm: !noteState.showForm});
     }
 
+    const noteForm = () => {
+        return(
+            <NoteDiv className={"mt-4"}>
+                <div className={"mb-4"}>Example Note form test</div>
+                <button onClick={switchNote} className={"btn btn-warning mr-3"}>Edit</button>
+                <button className={"btn btn-danger"}>Delete</button>
+            </NoteDiv>
+    )
+    }
+
+    const editForm = () => {
+        return( <NoteDiv className={"mt-4"}>
+            <textarea rows="4" cols="50" className={"mb-4"}>Example Edit Form Text</textarea>
+            <button className={"btn btn-success"}>Save</button>
+        </NoteDiv>);
+    }
+
+    let whatToShow = null;
+
+    if( noteState.showForm ) {
+        whatToShow = editForm();
+    } else {
+        whatToShow = noteForm();
+    }
+
+
     return(
-        <NoteDiv>
-            <div>{noteState.notes[0].text}</div>
-            <button className={"btn btn-warning mr-3"}>Edit</button>
-            <button className={"btn btn-danger"}>Delete</button>
-        </NoteDiv>
+        <div className={"mt-4"}>
+            {whatToShow}
+        </div>
     )
 }
 
