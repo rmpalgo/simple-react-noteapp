@@ -11,6 +11,19 @@ class App extends Component {
         ]
     }
 
+    removePost = (index) => {
+        let stateArr = this.state.notes;
+        stateArr.splice(index, 1);
+        this.setState({notes: stateArr})
+    }
+
+    updatePost(newPost, index) {
+        console.log("update comment");
+        let stateArr = this.state.notes;
+        stateArr[index] = newPost;
+        this.setState({notes: stateArr})
+    }
+
 
   render() {
         let posts = null;
@@ -22,6 +35,9 @@ class App extends Component {
                         title={note.title}
                         body={note.body}
                         key={index}
+                        index={index}
+                        delete={this.removePost}
+                        update={this.updatePost}
                     />
                 })
             }

@@ -31,13 +31,18 @@ const Note = (props) => {
         setNoteState({showForm: !noteState.showForm});
     }
 
+    const deleteForm = () => {
+        console.log("delete");
+        props.delete(props.index);
+    }
+
     const noteForm = () => {
         return(
             <NoteDiv className={"mt-4"}>
                 <h3>{props.title}</h3>
                 <div className={"mb-4"}>{props.body}</div>
                 <button onClick={switchNote} className={"btn btn-warning mr-3"}>Edit</button>
-                <button className={"btn btn-danger"}>Delete</button>
+                <button onClick={deleteForm} className={"btn btn-danger"}>Delete</button>
             </NoteDiv>
     )
     }
