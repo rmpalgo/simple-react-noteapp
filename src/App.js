@@ -4,9 +4,14 @@ import './App.css';
 import Note from './Note/Note';
 
 class App extends Component {
-
+    state = {
+        notes: [
+            {title: "Post 1", body: "this is the body"}
+        ]
+    }
 
   render() {
+
     return (
         <div className="App">
             <div className="container">
@@ -15,7 +20,7 @@ class App extends Component {
                 </nav>
             </div>
             <div>
-                <Note />
+                <Note title={this.state.notes[0].title} body={this.state.notes[0].body}/>
             </div>
         </div>
     );

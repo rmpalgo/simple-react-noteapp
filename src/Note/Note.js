@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 
 const NoteDiv = styled.div`
-    width: 60%;
+                width: 60%;
                 margin: 15px auto;
                 border: 1px solid whitesmoke;
                 box-shadow: 0 2px 3px lightgrey;
@@ -18,7 +18,7 @@ const NoteDiv = styled.div`
                 }
 `
 
-const Note = () => {
+const Note = (props) => {
     const [noteState, setNoteState] = useState({
         showForm: false
     });
@@ -27,10 +27,15 @@ const Note = () => {
         setNoteState({showForm: !noteState.showForm});
     }
 
+    const saveForm = () => {
+        setNoteState({showForm: !noteState.showForm});
+    }
+
     const noteForm = () => {
         return(
             <NoteDiv className={"mt-4"}>
-                <div className={"mb-4"}>Example Note form test</div>
+                <h3>{props.title}</h3>
+                <div className={"mb-4"}>{props.body}</div>
                 <button onClick={switchNote} className={"btn btn-warning mr-3"}>Edit</button>
                 <button className={"btn btn-danger"}>Delete</button>
             </NoteDiv>
@@ -38,10 +43,11 @@ const Note = () => {
     }
 
     const editForm = () => {
-        return( <NoteDiv className={"mt-4"}>
-            <textarea rows="4" cols="50" className={"mb-4"}>Example Edit Form Text</textarea>
-            <button className={"btn btn-success"}>Save</button>
-        </NoteDiv>);
+        return(
+            <NoteDiv className={"mt-4"}>
+                <textarea rows="4" cols="50" className={"mb-4"}>Example Edit Form Text</textarea>
+                <button className={"btn btn-success"} onClick={saveForm}>Save</button>
+            </NoteDiv>);
     }
 
     let whatToShow = null;
@@ -51,7 +57,6 @@ const Note = () => {
     } else {
         whatToShow = noteForm();
     }
-
 
     return(
         <div className={"mt-4"}>
