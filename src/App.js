@@ -6,11 +6,26 @@ import Note from './Note/Note';
 class App extends Component {
     state = {
         notes: [
-            {title: "Post 1", body: "this is the body"}
+            {title: "Post 1", body: "this is the body"},
+            {title: "Post 2", body: "this is the body"}
         ]
     }
 
+
   render() {
+        let posts = null;
+
+        posts = (<div>
+            {
+                this.state.notes.map((note, index) => {
+                    return <Note
+                        title={note.title}
+                        body={note.body}
+                        key={index}
+                    />
+                })
+            }
+        </div>)
 
     return (
         <div className="App">
@@ -20,7 +35,7 @@ class App extends Component {
                 </nav>
             </div>
             <div>
-                <Note title={this.state.notes[0].title} body={this.state.notes[0].body}/>
+                {posts}
             </div>
         </div>
     );
