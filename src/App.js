@@ -1,15 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from 'react';
+import NewId from './utils/NewId';
 import './App.css';
 import Note from './Note/Note';
 
 class App extends Component {
     state = {
-        notes: [
-            {id: '100', title: "Post 1", body: "this is the body"},
-            {id: '101', title: "Post 2", body: "this is the body"},
-            {id: '102', title: "Post 3", body: "this is the body"}
-        ]
+        notes: []
     }
 
     removePost = (index) => {
@@ -18,19 +15,37 @@ class App extends Component {
         this.setState({notes: stateArr})
     }
 
-    updatePost(event, id) {
-        const noteIndex = this.state.notes.findIndex(p => {
-            return p.id === id;
+    updateBody(event, id) {
+        let bodyIndex = this.state.notes.findIndex(b => {
+            return b.id === id;
         });
         const note = {
-            ...this.state.notes[noteIndex]
+            ...this.state.notes[bodyIndex]
         };
         note.body = event.target.value;
         const notes = [...this.state.notes];
-        notes[noteIndex] = note;
+        notes[bodyIndex] = note;
         this.setState({notes: notes})
     }
 
+    updateTitle(event, id) {
+        const titleIndex = this.state.notes.findIndex( t => {
+            return t.id === id;
+        });
+        const note = {
+            ...this.state.notes[titleIndex]
+        };
+        note.title = event.target.value;
+        const notes = [...this.state.notes];
+        notes[titleIndex] = note;
+        this.setState({notes: notes})
+    }
+
+    addPost = (text) => {
+        let arr = this.state.notes;
+        arr.push({id: "" + NewId(), title: "New Post", body: "New Text"});
+        this.setState({notes: arr});
+    }
 
   render() {
         let posts = null;
@@ -41,10 +56,11 @@ class App extends Component {
                     return <Note
                         title={note.title}
                         body={note.body}
-                        key={note.id}
+                        key={index}
                         index={index}
                         delete={this.removePost}
-                        update={(event) => this.updatePost(event, note.id)}
+                        updateBody={(event) => this.updateBody(event, note.id)}
+                        updateTitle={(event) => this.updateTitle(event, note.id)}
                     />
                 })
             }
@@ -55,6 +71,7 @@ class App extends Component {
             <div className="container">
                 <nav className="navbar navbar-expand-lg navbar-light bg-info">
                     <a className="navbar-brand" href="#">NotePad</a>
+                    <a onClick={this.addPost.bind(null, "New Post")} className="navbar-brand" href="#">add+</a>
                 </nav>
             </div>
             <div>

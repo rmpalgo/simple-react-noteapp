@@ -49,8 +49,10 @@ const Note = (props) => {
     const editForm = () => {
         return(
             <NoteDiv className={"mt-4"}>
-                <h1 defaultValue={props.title}/>
-                <textarea rows="4" cols="50" className={"mb-4"} defaultValue={props.body} onChange={props.update}/>
+                <h3>Title:</h3>
+                <input className={"ml-2 mb-2"} type="text" defaultValue={props.title} onChange={props.updateTitle}/>
+                <h3>Body:</h3>
+                <textarea rows="4" cols="50" className={"mb-4"} defaultValue={props.body} onChange={props.updateBody}/>
                 <button className={"btn btn-success"} onClick={saveForm}>Save</button>
             </NoteDiv>);
     }
