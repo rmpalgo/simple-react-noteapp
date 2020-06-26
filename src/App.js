@@ -71,7 +71,7 @@ class App extends Component {
             <div className="container">
                 <nav className="navbar navbar-expand-lg navbar-light bg-info">
                     <a className="navbar-brand" href="#">NotePad</a>
-                    <a onClick={this.addPost.bind(null, "New Post")} className="navbar-brand" href="#">add+</a>
+                    <a onClick={this.addPost} className="navbar-brand" href="#">add+</a>
                 </nav>
             </div>
             <div>
