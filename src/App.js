@@ -41,7 +41,7 @@ class App extends Component {
         this.setState({notes: notes})
     }
 
-    addPost = (text) => {
+    addPost = () => {
         let arr = this.state.notes;
         arr.push({id: "" + NewId(), title: "New Post", body: "New Text"});
         this.setState({notes: arr});
