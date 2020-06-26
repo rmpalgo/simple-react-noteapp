@@ -32,7 +32,6 @@ const Note = (props) => {
     }
 
     const deleteForm = () => {
-        console.log("delete");
         props.delete(props.index);
     }
 
@@ -50,7 +49,8 @@ const Note = (props) => {
     const editForm = () => {
         return(
             <NoteDiv className={"mt-4"}>
-                <textarea rows="4" cols="50" className={"mb-4"}>Example Edit Form Text</textarea>
+                <h1 defaultValue={props.title}/>
+                <textarea rows="4" cols="50" className={"mb-4"} defaultValue={props.body} onChange={props.update}/>
                 <button className={"btn btn-success"} onClick={saveForm}>Save</button>
             </NoteDiv>);
     }

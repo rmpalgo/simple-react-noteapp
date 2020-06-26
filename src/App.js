@@ -6,8 +6,9 @@ import Note from './Note/Note';
 class App extends Component {
     state = {
         notes: [
-            {title: "Post 1", body: "this is the body"},
-            {title: "Post 2", body: "this is the body"}
+            {id: '100', title: "Post 1", body: "this is the body"},
+            {id: '101', title: "Post 2", body: "this is the body"},
+            {id: '102', title: "Post 3", body: "this is the body"}
         ]
     }
 
@@ -17,11 +18,17 @@ class App extends Component {
         this.setState({notes: stateArr})
     }
 
-    updatePost(newPost, index) {
-        console.log("update comment");
-        let stateArr = this.state.notes;
-        stateArr[index] = newPost;
-        this.setState({notes: stateArr})
+    updatePost(event, id) {
+        const noteIndex = this.state.notes.findIndex(p => {
+            return p.id === id;
+        });
+        const note = {
+            ...this.state.notes[noteIndex]
+        };
+        note.body = event.target.value;
+        const notes = [...this.state.notes];
+        notes[noteIndex] = note;
+        this.setState({notes: notes})
     }
 
 
@@ -34,10 +41,10 @@ class App extends Component {
                     return <Note
                         title={note.title}
                         body={note.body}
-                        key={index}
+                        key={note.id}
                         index={index}
                         delete={this.removePost}
-                        update={this.updatePost}
+                        update={(event) => this.updatePost(event, note.id)}
                     />
                 })
             }
